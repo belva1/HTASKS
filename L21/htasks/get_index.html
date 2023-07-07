@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <style>
+  *{
+    box-sizing: border-box;
+    }
+
+  body {
+    font-family: sans-serif;
+    background: black;
+    }
+
+  .container {
+    width: 1200px;
+    margin: 0 auto;
+    }
+
+  .form {
+     margin: 150px auto;
+     width: 500px;
+     padding: 30px;
+     background: #2d3436;
+     color: #fff;
+     text-align: center;
+     }
+
+  </style>
+</head>
+
+
+<body style="background-color: gray;">
+<div class="container">
+  <div style="text-align:center; font-size:150%";>
+    <form class="form" action="https://jsonplaceholder.typicode.com/posts" method="GET">
+      <h1>INPUT</h1>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping 1">&#10063</span>
+        <input type="number" class="form-control" id="1" name="userID" placeholder="Please enter the user ID" aria-describedby="addon-wrapping 1" minlength="1" maxlength="255" required>
+      </div>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping 2">&#10063</span>
+        <input type="number" class="form-control" id="2" name="id" placeholder="Please enter the ID" aria-describedby="addon-wrapping 2" minlength="1" maxlength="255" required>
+      </div>
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
