@@ -28,26 +28,28 @@
      text-align: center;
      }
 
+
+
   </style>
 </head>
 
 
-<body style="background-color: gray;">
+<body>
 <div class="container">
   <div style="text-align:center; font-size:150%";>
     <form class="form" action="https://jsonplaceholder.typicode.com/posts" method="POST">
       <h1>INPUT</h1>
-      <div class="input-group flex-nowrap">
+      <div class="input-group flex-nowrap" style="margin-bottom: 4px">
         <span class="input-group-text" id="addon-wrapping 1">&#10063</span>
-        <input type="number" class="form-control" id="1" name="userID" placeholder="Please enter the user ID" aria-describedby="addon-wrapping 1" minlength="1" maxlength="255" required>
+        <input type="number" class="form-control" id="1" name="userID" placeholder="Please enter the user ID" minlength="1" maxlength="255" required>
       </div>
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping 2">&#10065</span>
-        <input type="text" class="form-control" id="2" name="title" placeholder="Please enter the Title" aria-describedby="addon-wrapping 2" minlength="1" maxlength="255" required>
+      <div class="input-group flex-nowrap" style="margin-bottom: 4px">
+        <span class="input-group-text" id="2">&#10065</span>
+        <input type="text" class="form-control" id="3" name="title" placeholder="Please enter the Title" minlength="1" maxlength="255" required>
       </div>
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping 3">&#10064</span>
-        <input type="text" class="form-control" id="3" name="body" placeholder="Please enter the Body" aria-describedby="addon-wrapping 3" minlength="1" maxlength="255" required>
+      <div class="input-group flex-nowrap" style="margin-bottom: 4px">
+        <span class="input-group-text" id="4">&#10064</span>
+        <input type="text" class="form-control" id="5" name="body" placeholder="Please enter the Body" minlength="1" maxlength="255" required>
       </div>
       <button type="submit" class="btn btn-dark">Submit</button>
     </form>
