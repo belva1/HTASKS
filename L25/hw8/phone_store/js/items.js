@@ -1272,125 +1272,82 @@ const items = [
     },
 ];
 
-// for the Header
-let header = document.createElement("div")
-header.className = 'header'
-let home = document.createElement("a")
-home.className = 'home'
-home.src = ''
-home.innerText = 'HOME'
-let input = document.createElement("input")
-input.className = 'input'
-input.placeholder = 'Enter product name'
-let button = document.createElement("button")
-button.className = 'cart'
-button.innerText = 'Cart'
 
-// push for the Header
-header.appendChild(home)
-header.appendChild(input)
-header.appendChild(button)
-document.body.appendChild(header)
-
-
-// for the Grid
-let grid = document.createElement("div")
-grid.className = 'grid'
-
-
-for(let item of items) {
-    let container = document.createElement('div')
-    container.className = 'container'
-
-    let divImage = document.createElement('div')
-    divImage.className = 'div-product-image'
-    let image = document.createElement('img')
-    image.className = 'product-image'
-    image.src = 'img/' + item.imgUrl
-    divImage.appendChild(image)
-
-    let divProductName = document.createElement('div')
-    divProductName.className = 'div-product-name'
-    let productName = document.createElement('a')
-    productName.className = 'product-name'
-    productName.innerText = item.name
-    divProductName.appendChild(productName)
-
-    let divAdditionInfo = document.createElement('div')
-    divAdditionInfo.className = 'addition-info'
-
-    let reviews = document.createElement('p')
-    reviews.className = 'reviews'
-    reviews.innerText = `Positive reviews: ${item.orderInfo.reviews}%`
-
-    let inStock = document.createElement('p')
-    if (item.orderInfo.inStock !== 0){
-        inStock.className = 'in-stock'
-    }else{
-        inStock.className = 'out-of-stock'
+class deviceSite {
+    constructor() {
+        this.createHeader()
+        this.grid = document.createElement("div") //to push for the each device
+        this.grid.className = 'grid'
+        items.forEach(item => this.createBody(item))
+        document.body.appendChild(this.grid)
     }
-    inStock.innerText = `In stock: ${item.orderInfo.inStock}`
 
-    let productPrice = document.createElement('p')
-    productPrice.className = 'product-price'
-    productPrice.innerText = `$${item.price}`
+    createHeader(){
+        let header = document.createElement("div")
+        header.className = 'header'
+        let home = document.createElement("a")
+        home.className = 'home'
+        home.src = ''
+        home.innerText = 'HOME'
+        let input = document.createElement("input")
+        input.className = 'input'
+        input.placeholder = 'Enter product name'
+        let button = document.createElement("button")
+        button.className = 'cart'
+        button.innerText = 'Cart'
+        // Push for the Header
+        header.appendChild(home)
+        header.appendChild(input)
+        header.appendChild(button)
+        document.body.appendChild(header)
+    }
 
-    divAdditionInfo.appendChild(reviews)
-    divAdditionInfo.appendChild(inStock)
-    divAdditionInfo.appendChild(productPrice)
+    createBody(item) {
+        let container = document.createElement('div')
+        container.className = 'container'
 
-    container.appendChild(divImage)
-    container.appendChild(divProductName)
-    container.appendChild(divAdditionInfo)
-    grid.appendChild(container)
+        let divImage = document.createElement('div')
+        divImage.className = 'div-product-image'
+        let image = document.createElement('img')
+        image.className = 'product-image'
+        image.src = 'img/' + item.imgUrl
+        divImage.appendChild(image)
+
+        let divProductName = document.createElement('div')
+        divProductName.className = 'div-product-name'
+        let productName = document.createElement('a')
+        productName.className = 'product-name'
+        productName.innerText = item.name
+        divProductName.appendChild(productName)
+
+        let divAdditionInfo = document.createElement('div')
+        divAdditionInfo.className = 'addition-info'
+
+        let reviews = document.createElement('p')
+        reviews.className = 'reviews'
+        reviews.innerText = `Positive reviews: ${item.orderInfo.reviews}%`
+
+        let inStock = document.createElement('p')
+        if (item.orderInfo.inStock !== 0){
+            inStock.className = 'in-stock'
+        }else{
+            inStock.className = 'out-of-stock'
+        }
+        inStock.innerText = `In stock: ${item.orderInfo.inStock}`
+
+        let productPrice = document.createElement('p')
+        productPrice.className = 'product-price'
+        productPrice.innerText = `$${item.price}`
+
+        divAdditionInfo.appendChild(reviews)
+        divAdditionInfo.appendChild(inStock)
+        divAdditionInfo.appendChild(productPrice)
+
+        container.appendChild(divImage)
+        container.appendChild(divProductName)
+        container.appendChild(divAdditionInfo)
+        this.grid.appendChild(container)
+    }
 }
 
-document.body.appendChild(grid)
-
-
-
-
-//<div class="container">
-//  <div class="div-product-image">
-//    <img class="product-image" src="imgs/macbook-air.png">
-//  </div>
-//  <div class="div-product-name">
-//    <a class="product-name">MacBook Air</a>
-//  </div>
-//  <div class="addition-info">
-//    <p class="in-stock">In stock: 435</p>
-//    <p class="product-price">999$</p>
-//  </div>
-//</div>
-
-
-
-
-
-// push to the Grid
-//for(let i = 0; i < 40; i++) {
-//    if(i % 2 === 0){
-//        let divSqr1 = document.createElement("div")
-//        divSqr1.className = 'square first'
-//        grid.appendChild(divSqr1)
-//    }else{
-//        let divSqr2 = document.createElement("div")
-//        divSqr2.className = 'square second'
-//        grid.appendChild(divSqr2)
-//    }
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let device = new deviceSite()

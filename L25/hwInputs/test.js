@@ -75,6 +75,7 @@ class myDiv {
             input.setAttribute(item.key, item.value)
         })
         this.inputs.push(input)
+
         let p = document.createElement('p')
         p.style.marginLeft = '17px'
         p.style.marginTop = '15px'
@@ -92,9 +93,9 @@ class myDiv {
                 p.innerText = ''
             }
           })
-        this.btn.addEventListener("click", () => {
+        this.btn.addEventListener('click', () => {
             if (input.required && input.value === '') {
-                alert(`${input.name} can't be empty`)
+                alert(`${input.name} can not be empty`)
             }
         })
 
