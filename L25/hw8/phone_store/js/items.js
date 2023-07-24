@@ -1275,34 +1275,112 @@ const items = [
 
 class deviceSite {
     constructor() {
-        this.createHeader()
-        this.grid = document.createElement("div") //to push for the each device
+        this.checkCartPage = document.createElement('div')
+        this.grid = document.createElement("div") // to push for the each device
         this.grid.className = 'grid'
-        items.forEach(item => this.createBody(item))
+        this.cartAmount = 0
+        this.inCart = []
+        this.cartButton = document.createElement("button")
+        this.cartButton.className = 'cart'
+        this.cartButton.innerText = `Cart (${this.cartAmount})`
+        items.forEach(item => {
+            let newDevice = new Device(item)
+            this.grid.appendChild(newDevice.deviceDiv)
+            newDevice.addCartBtn.addEventListener('click', () => {
+                this.cartButton.innerText = `Cart (${++this.cartAmount})`
+                this.inCart.push(newDevice)
+            })
+        })
         document.body.appendChild(this.grid)
+        this.createHeader()
     }
 
     createHeader(){
         let header = document.createElement("div")
         header.className = 'header'
+
         let home = document.createElement("a")
         home.className = 'home'
-        home.src = ''
         home.innerText = 'HOME'
+        home.href = '' // main site page
+
+        let searchDiv = document.createElement('div')
+
         let input = document.createElement("input")
         input.className = 'input'
         input.placeholder = 'Enter product name'
-        let button = document.createElement("button")
-        button.className = 'cart'
-        button.innerText = 'Cart'
-        // Push for the Header
+
+        let searchButton = document.createElement('button')
+        searchButton.className = 'search-button'
+        searchButton.innerText = 'Search'
+        searchButton.addEventListener('click', () => {
+            this.checkCartPage.innerText = ''
+            let inputValue = input.value.toLowerCase()
+            input.value = ''
+            this.grid.innerText = ''
+            items.forEach(item => {
+                if(item.name.toLowerCase().includes(inputValue)) {
+                    let deviceToDisplay = new Device(item)
+                    this.grid.appendChild(deviceToDisplay.deviceDiv)
+                }
+            })
+        })
+
+        this.cartButton.addEventListener('click', () => {
+            this.checkCartPage.innerText = ''
+            this.grid.innerText = ''
+            this.inCart = this.inCart.sort() // grouped by the same items 
+            let amount = 1 // amount of same items in different time
+            for(let i = 0; i < this.inCart.length - 1; i++){
+                if(this.inCart[i] === this.inCart[i + 1]){  // if current item === item + 1
+                    amount++
+                }else{
+                    let amountDiv = document.createElement('div')
+                    amountDiv.style.textAlign = 'center'
+                    let pAmount = document.createElement('h2')
+                    pAmount.innerText = `Amount of this device: ${amount}`
+                    amountDiv.appendChild(pAmount)
+                    amountDiv.appendChild(this.inCart[i].createBody()) // the last from the same blocks
+                    amount = 1
+                    this.checkCartPage.appendChild(amountDiv)
+                }
+            }
+            let amountDiv = document.createElement('div')
+            amountDiv.style.textAlign = 'center'
+            let pAmount = document.createElement('h2')
+            pAmount.innerText = `Amount of this device: ${amount}`
+            amountDiv.appendChild(pAmount)
+            amountDiv.appendChild(this.inCart[this.inCart.length - 1].createBody())
+            this.checkCartPage.appendChild(amountDiv)
+            document.body.appendChild(this.checkCartPage)
+
+            // this.inCart.sort().forEach(item => {
+            //     document.body.appendChild(item.createBody())
+            // })
+        })
+
         header.appendChild(home)
-        header.appendChild(input)
-        header.appendChild(button)
+        searchDiv.appendChild(input)
+        searchDiv.appendChild(searchButton)
+        header.appendChild(searchDiv)
+        header.appendChild(this.cartButton)
         document.body.appendChild(header)
     }
+    
+}
 
-    createBody(item) {
+
+class Device {
+    constructor(settings) {
+        this.settings = settings // all properties of each device
+        this.addCartBtn = document.createElement('button')
+        this.addCartBtn.className = 'add-to-cart-btn'
+        this.addCartBtn.innerText = 'Add to Cart'
+        this.deviceDiv = this.createBody()
+        this.deviceDiv.appendChild(this.addCartBtn)
+    }
+
+    createBody() {
         let container = document.createElement('div')
         container.className = 'container'
 
@@ -1310,14 +1388,14 @@ class deviceSite {
         divImage.className = 'div-product-image'
         let image = document.createElement('img')
         image.className = 'product-image'
-        image.src = 'img/' + item.imgUrl
+        image.src = 'img/' + this.settings.imgUrl
         divImage.appendChild(image)
 
         let divProductName = document.createElement('div')
         divProductName.className = 'div-product-name'
         let productName = document.createElement('a')
         productName.className = 'product-name'
-        productName.innerText = item.name
+        productName.innerText = this.settings.name
         divProductName.appendChild(productName)
 
         let divAdditionInfo = document.createElement('div')
@@ -1325,19 +1403,19 @@ class deviceSite {
 
         let reviews = document.createElement('p')
         reviews.className = 'reviews'
-        reviews.innerText = `Positive reviews: ${item.orderInfo.reviews}%`
+        reviews.innerText = `Positive reviews: ${this.settings.orderInfo.reviews}%`
 
         let inStock = document.createElement('p')
-        if (item.orderInfo.inStock !== 0){
+        if (this.settings.orderInfo.inStock !== 0){
             inStock.className = 'in-stock'
         }else{
             inStock.className = 'out-of-stock'
         }
-        inStock.innerText = `In stock: ${item.orderInfo.inStock}`
+        inStock.innerText = `In stock: ${this.settings.orderInfo.inStock}`
 
         let productPrice = document.createElement('p')
         productPrice.className = 'product-price'
-        productPrice.innerText = `$${item.price}`
+        productPrice.innerText = `$${this.settings.price}`
 
         divAdditionInfo.appendChild(reviews)
         divAdditionInfo.appendChild(inStock)
@@ -1346,8 +1424,14 @@ class deviceSite {
         container.appendChild(divImage)
         container.appendChild(divProductName)
         container.appendChild(divAdditionInfo)
-        this.grid.appendChild(container)
+        return container // "this.createBody()" assigned to this.deviceDiv
     }
+
 }
+
+
+
+
+
 
 let device = new deviceSite()

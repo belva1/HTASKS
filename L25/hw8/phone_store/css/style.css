@@ -1,5 +1,5 @@
 .header {
-  background-color: darkgrey;
+  background-color: white;
   display: flex;
   height: 60px;
   margin-top: 0px;
@@ -15,9 +15,10 @@
 .home {
   margin-left: 10px;
   height: 30px;
-  color: darkblue;
+  color: black;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 27px;
+  text-decoration: none;
 }
 
 .input {
@@ -26,19 +27,28 @@
   border-radius: 12px;
   border-width: 1px;
   width: 400px;
-  height: 30px;
+  height: 32px;
 }
 
 .cart {
+  border-width: 1px;
+  border-color: black;
   color: white;
   margin-right: 10px;
-  background-color: darkblue;
-  border: 0;
+  padding: 8px 12px 8px 12px;
+  background-color: black;
   border-radius: 20px;
   cursor: pointer;
-  width: 64px;
-  height: 40px;
   font-size: 16px;
+}
+
+.cart:hover{
+  background-color: rgba(0, 0, 0, 0.70);
+}
+
+.cart:active{
+  background-color:white;
+  color: black;
 }
 
 .grid {
@@ -97,6 +107,7 @@
 
 .container {
     background-color: white;
+    text-align: center;
 }
 
 .div-product-image{
@@ -134,4 +145,46 @@
 
 .out-of-stock{
     color: orangered;
+}
+
+.add-to-cart-btn{
+  border-radius: 5px;
+  padding: 6px 10px 6px 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: white;
+  background-color: black;
+  border-width: 1px;
+  border-color: black;
+  transition: 0.2s;
+}
+
+.add-to-cart-btn:hover{
+  background-color: rgba(0, 0, 0, 0.70);
+}
+
+.add-to-cart-btn:active{
+  background-color:white;
+  color: black;
+}
+
+.search-button{
+  margin-left: 6px;
+  border-radius: 12px;
+  padding: 8px 12px 8px 12px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  border-width: 1px;
+  border-color: black;
+  transition: 0.2s;
+}
+
+.search-button:hover{
+  background-color: rgba(0, 0, 0, 0.70);
+}
+
+.search-button:active{
+  background-color:white;
+  color: black;
 }
